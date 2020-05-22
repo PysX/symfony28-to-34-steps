@@ -110,11 +110,6 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // See "Do you need to use a Salt?" at http://symfony.com/doc/current/cookbook/security/entity_provider.html
-        // we're using bcrypt in security.yml to encode the password, so
-        // the salt value is built-in and you don't have to generate one
-
-        return;
     }
 
     /**
