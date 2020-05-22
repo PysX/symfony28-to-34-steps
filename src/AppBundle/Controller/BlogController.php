@@ -21,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Form\CommentType;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -79,7 +80,7 @@ class BlogController extends Controller
      */
     public function commentNewAction(Request $request, Post $post)
     {
-        $form = $this->createForm(\AppBundle\Form\CommentType::class);
+        $form = $this->createForm(CommentType::class);
 
         $form->handleRequest($request);
 
@@ -116,7 +117,7 @@ class BlogController extends Controller
      */
     public function commentFormAction(Post $post)
     {
-        $form = $this->createForm(\AppBundle\Form\CommentType::class);
+        $form = $this->createForm(CommentType::class);
 
         return $this->render('blog/_comment_form.html.twig', [
             'post' => $post,

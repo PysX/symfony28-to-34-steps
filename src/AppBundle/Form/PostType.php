@@ -14,6 +14,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
  * Defines the form used to create and manipulate blog posts.
@@ -40,12 +41,16 @@ class PostType extends AbstractType
 
         $builder
             ->add('title', null, [
-                'attr' => ['autofocus' => true],
+                'attr' => [
+                    'autofocus' => true
+                ],
                 'label' => 'label.title',
             ])
-            ->add('summary', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class, ['label' => 'label.summary'])
+            ->add('summary', TextareaType::class, ['label' => 'label.summary'])
             ->add('content', null, [
-                'attr' => ['rows' => 20],
+                'attr' => [
+                    'rows' => 20
+                ],
                 'label' => 'label.content',
             ])
             ->add('authorEmail', null, ['label' => 'label.author_email'])

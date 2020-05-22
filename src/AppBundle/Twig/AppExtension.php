@@ -50,7 +50,9 @@ class AppExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter('md2html', [$this, 'markdownToHtml'], [
+                'is_safe' => ['html']
+            ]),
         ];
     }
 
@@ -59,9 +61,7 @@ class AppExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return [
-            new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
-        ];
+        return [new \Twig_SimpleFunction('locales', [$this, 'getLocales']),];
     }
 
     /**
@@ -89,7 +89,10 @@ class AppExtension extends \Twig_Extension
 
         $locales = [];
         foreach ($localeCodes as $localeCode) {
-            $locales[] = ['code' => $localeCode, 'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)];
+            $locales[] = [
+                'code' => $localeCode,
+                'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)
+            ];
         }
 
         return $locales;

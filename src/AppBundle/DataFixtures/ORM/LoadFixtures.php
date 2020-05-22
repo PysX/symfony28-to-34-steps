@@ -18,6 +18,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use DateTime;
 
 /**
  * Defines the sample data to load in the database when running the unit and
@@ -32,7 +33,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 {
-    /** @var ContainerInterface */
+    /**
+     * @var ContainerInterface
+     */
     private $container;
 
     /**
@@ -78,13 +81,13 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
             $post->setSlug($this->container->get('slugger')->slugify($post->getTitle()));
             $post->setContent($this->getPostContent());
             $post->setAuthorEmail('anna_admin@symfony.com');
-            $post->setPublishedAt(new \DateTime('now - '.$i.'days'));
+            $post->setPublishedAt(new DateTime('now - '.$i.'days'));
 
             foreach (range(1, 5) as $j) {
                 $comment = new Comment();
 
                 $comment->setAuthorEmail('john_user@symfony.com');
-                $comment->setPublishedAt(new \DateTime('now + '.($i + $j).'seconds'));
+                $comment->setPublishedAt(new DateTime('now + '.($i + $j).'seconds'));
                 $comment->setContent($this->getRandomCommentContent());
                 $comment->setPost($post);
 

@@ -14,6 +14,7 @@ namespace AppBundle\EventListener;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use UnexpectedValueException;
 
 /**
  * When visiting the homepage, this listener redirects the user to the most
@@ -55,13 +56,17 @@ class RedirectToPreferredLocaleListener
 
         $this->locales = explode('|', trim($locales));
         if (empty($this->locales)) {
-            throw new \UnexpectedValueException('The list of supported locales must not be empty.');
+            throw new UnexpectedValueException('The list of supported locales must not be empty.');
         }
 
         $this->defaultLocale = $defaultLocale ?: $this->locales[0];
 
         if (!in_array($this->defaultLocale, $this->locales)) {
-            throw new \UnexpectedValueException(sprintf('The default locale ("%s") must be one of "%s".', $this->defaultLocale, $locales));
+            throw new UnexpectedValueException(sprintf(
+                'The default locale ("%s") must be one of "%s".',
+                $this->defaultLocale,
+                $locales
+            ));
         }
 
         // Add the default locale at the first position of the array,
@@ -91,7 +96,10 @@ class RedirectToPreferredLocaleListener
         $preferredLanguage = $request->getPreferredLanguage($this->locales);
 
         if ($preferredLanguage !== $this->defaultLocale) {
-            $response = new RedirectResponse($this->urlGenerator->generate('homepage', ['_locale' => $preferredLanguage]));
+            $response = new RedirectResponse($this->urlGenerator->generate(
+                'homepage',
+                ['_locale' => $preferredLanguage]
+            ));
             $event->setResponse($response);
         }
     }

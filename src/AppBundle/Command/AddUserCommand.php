@@ -19,6 +19,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use RuntimeException;
+use Exception;
 
 /**
  * A command console that creates users and stores them in the database.
@@ -91,7 +93,11 @@ class AddUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email')) {
+        if (null !== $input->getArgument('username') && null !== $input->getArgument(
+            'password'
+        ) && null !== $input->getArgument(
+            'email'
+        )) {
             return;
         }
 
@@ -110,11 +116,7 @@ class AddUserCommand extends ContainerAwareCommand
             '',
         ]);
 
-        $output->writeln([
-            '',
-            "Now we'll ask you for the value of all the missing command arguments.",
-            '',
-        ]);
+        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '',]);
 
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
@@ -125,7 +127,7 @@ class AddUserCommand extends ContainerAwareCommand
             $question = new Question(' > <info>Username</info>: ');
             $question->setValidator(function ($answer) {
                 if (empty($answer)) {
-                    throw new \RuntimeException('The username cannot be empty');
+                    throw new RuntimeException('The username cannot be empty');
                 }
 
                 return $answer;
@@ -183,7 +185,10 @@ class AddUserCommand extends ContainerAwareCommand
         $existingUser = $this->entityManager->getRepository('AppBundle:User')->findOneBy(['username' => $username]);
 
         if (null !== $existingUser) {
-            throw new \RuntimeException(sprintf('There is already a user registered with the "%s" username.', $username));
+            throw new RuntimeException(sprintf(
+                'There is already a user registered with the "%s" username.',
+                $username
+            ));
         }
 
         // create the user and encode its password
@@ -201,13 +206,17 @@ class AddUserCommand extends ContainerAwareCommand
         $this->entityManager->flush();
 
         $output->writeln('');
-        $output->writeln(sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail()));
+        $output->writeln(
+            sprintf('[OK] %s was successfully created: %s (%s)', $isAdmin ? 'Administrator user' : 'User', $user->getUsername(), $user->getEmail())
+        );
 
         if ($output->isVerbose()) {
             $finishTime = microtime(true);
             $elapsedTime = $finishTime - $startTime;
 
-            $output->writeln(sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime*1000));
+            $output->writeln(
+                sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime*1000)
+            );
         }
     }
 
@@ -220,11 +229,11 @@ class AddUserCommand extends ContainerAwareCommand
     public function passwordValidator($plainPassword)
     {
         if (empty($plainPassword)) {
-            throw new \Exception('The password can not be empty');
+            throw new Exception('The password can not be empty');
         }
 
         if (strlen(trim($plainPassword)) < 6) {
-            throw new \Exception('The password must be at least 6 characters long');
+            throw new Exception('The password must be at least 6 characters long');
         }
 
         return $plainPassword;
@@ -239,11 +248,11 @@ class AddUserCommand extends ContainerAwareCommand
     public function emailValidator($email)
     {
         if (empty($email)) {
-            throw new \Exception('The email can not be empty');
+            throw new Exception('The email can not be empty');
         }
 
         if (false === strpos($email, '@')) {
-            throw new \Exception('The email should look like a real email');
+            throw new Exception('The email should look like a real email');
         }
 
         return $email;

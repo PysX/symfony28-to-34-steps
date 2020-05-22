@@ -41,7 +41,10 @@ class SourceCodeExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('show_source_code', [$this, 'showSourceCode'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('show_source_code', [$this, 'showSourceCode'], [
+                'is_safe' => ['html'],
+                'needs_environment' => true
+            ]),
         ];
     }
 
@@ -63,7 +66,11 @@ class SourceCodeExtension extends \Twig_Extension
         $method = $this->getCallableReflector($this->controller);
 
         $classCode = file($method->getFileName());
-        $methodCode = array_slice($classCode, $method->getStartLine() - 1, $method->getEndLine() - $method->getStartLine() + 1);
+        $methodCode = array_slice(
+            $classCode,
+            $method->getStartLine() - 1,
+            $method->getEndLine() - $method->getStartLine() + 1
+        );
         $controllerCode = '    '.$method->getDocComment()."\n".implode('', $methodCode);
 
         return [

@@ -18,6 +18,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
+use RuntimeException;
+use Exception;
 
 /**
  * A command console that deletes users from the database.
@@ -90,11 +92,7 @@ HELP
             '',
         ]);
 
-        $output->writeln([
-            '',
-            "Now we'll ask you for the value of all the missing command arguments.",
-            '',
-        ]);
+        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '',]);
 
         $helper = $this->getHelper('question');
 
@@ -116,7 +114,7 @@ HELP
         $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
-            throw new \RuntimeException(sprintf('User with username "%s" not found.', $username));
+            throw new RuntimeException(sprintf('User with username "%s" not found.', $username));
         }
 
         // After an entity has been removed its in-memory state is the same
@@ -128,7 +126,9 @@ HELP
         $this->entityManager->flush();
 
         $output->writeln('');
-        $output->writeln(sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail()));
+        $output->writeln(
+            sprintf('[OK] User "%s" (ID: %d, email: %s) was successfully deleted.', $user->getUsername(), $userId, $user->getEmail())
+        );
     }
 
     /**
@@ -140,11 +140,11 @@ HELP
     public function usernameValidator($username)
     {
         if (empty($username)) {
-            throw new \Exception('The username can not be empty.');
+            throw new Exception('The username can not be empty.');
         }
 
         if (1 !== preg_match('#^[a-z_]+$#', $username)) {
-            throw new \Exception('The username must contain only lowercase latin characters and underscores.');
+            throw new Exception('The username must contain only lowercase latin characters and underscores.');
         }
 
         return $username;

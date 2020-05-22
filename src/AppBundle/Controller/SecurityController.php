@@ -14,6 +14,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Exception;
 
 /**
  * Controller used to manage the application security.
@@ -50,7 +51,7 @@ class SecurityController extends Controller
      */
     public function loginCheckAction()
     {
-        throw new \Exception('This should never be reached!');
+        throw new Exception('This should never be reached!');
     }
 
     /**
@@ -63,6 +64,6 @@ class SecurityController extends Controller
      */
     public function logoutAction()
     {
-        throw new \Exception('This should never be reached!');
+        throw new Exception('This should never be reached!');
     }
 }
