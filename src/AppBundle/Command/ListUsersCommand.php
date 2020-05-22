@@ -22,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * A command console that lists all the existing users. To use this command, open
- * a terminal window, enter into your project directory and execute the following:
+ * a terminal window, enter into your project directory and execute the following:.
  *
  *     $ php app/console app:list-users
  *

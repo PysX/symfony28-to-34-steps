@@ -59,6 +59,7 @@ class User implements UserInterface
     {
         return $this->username;
     }
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -68,6 +69,7 @@ class User implements UserInterface
     {
         return $this->email;
     }
+
     public function setEmail($email)
     {
         $this->email = $email;
@@ -80,6 +82,7 @@ class User implements UserInterface
     {
         return $this->password;
     }
+
     public function setPassword($password)
     {
         $this->password = $password;

@@ -22,7 +22,7 @@ use DateTime;
 
 /**
  * Defines the sample data to load in the database when running the unit and
- * functional tests. Execute this command to load the data:
+ * functional tests. Execute this command to load the data:.
  *
  *   $ php app/console doctrine:fixtures:load
  *
@@ -184,7 +184,7 @@ MARKDOWN;
         $numPhrases = mt_rand(6, 12);
         shuffle($phrases);
 
-        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases - 1)), 0, $maxLength);
     }
 
     private function getRandomCommentContent()
@@ -194,6 +194,6 @@ MARKDOWN;
         $numPhrases = mt_rand(2, 15);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return implode(' ', array_slice($phrases, 0, $numPhrases - 1));
     }
 }

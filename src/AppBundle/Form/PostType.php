@@ -42,14 +42,14 @@ class PostType extends AbstractType
         $builder
             ->add('title', null, [
                 'attr' => [
-                    'autofocus' => true
+                    'autofocus' => true,
                 ],
                 'label' => 'label.title',
             ])
             ->add('summary', TextareaType::class, ['label' => 'label.summary'])
             ->add('content', null, [
                 'attr' => [
-                    'rows' => 20
+                    'rows' => 20,
                 ],
                 'label' => 'label.content',
             ])

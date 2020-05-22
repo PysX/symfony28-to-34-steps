@@ -47,8 +47,8 @@ class RedirectToPreferredLocaleListener
      * Constructor.
      *
      * @param UrlGeneratorInterface $urlGenerator
-     * @param string $locales Supported locales separated by '|'
-     * @param string|null $defaultLocale
+     * @param string                $locales       Supported locales separated by '|'
+     * @param string|null           $defaultLocale
      */
     public function __construct(UrlGeneratorInterface $urlGenerator, $locales, $defaultLocale = null)
     {

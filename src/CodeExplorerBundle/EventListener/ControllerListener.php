@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 /**
  * Defines the method that 'listens' to the 'kernel.controller' event, which is
  * triggered whenever a controller is executed in the application.
- * See http://symfony.com/doc/current/book/internals.html#kernel-controller-event
+ * See http://symfony.com/doc/current/book/internals.html#kernel-controller-event.
  *
  * Tip: listeners are common in Symfony applications, but this particular listener
  * is too advanced and too specific for the demo application needs. For more common

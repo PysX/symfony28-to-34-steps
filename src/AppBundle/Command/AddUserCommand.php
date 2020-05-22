@@ -25,7 +25,7 @@ use Exception;
 /**
  * A command console that creates users and stores them in the database.
  * To use this command, open a terminal window, enter into your project
- * directory and execute the following:
+ * directory and execute the following:.
  *
  *     $ php app/console app:add-user
  *
@@ -116,7 +116,7 @@ class AddUserCommand extends ContainerAwareCommand
             '',
         ]);
 
-        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '',]);
+        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '']);
 
         // See http://symfony.com/doc/current/components/console/helpers/questionhelper.html
         $console = $this->getHelper('question');
@@ -215,7 +215,7 @@ class AddUserCommand extends ContainerAwareCommand
             $elapsedTime = $finishTime - $startTime;
 
             $output->writeln(
-                sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime*1000)
+                sprintf('[INFO] New user database id: %d / Elapsed time: %.2f ms', $user->getId(), $elapsedTime * 1000)
             );
         }
     }

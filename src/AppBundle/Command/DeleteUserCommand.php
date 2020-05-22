@@ -24,7 +24,7 @@ use Exception;
 /**
  * A command console that deletes users from the database.
  * To use this command, open a terminal window, enter into your project
- * directory and execute the following:
+ * directory and execute the following:.
  *
  *     $ php app/console app:delete-user
  *
@@ -92,7 +92,7 @@ HELP
             '',
         ]);
 
-        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '',]);
+        $output->writeln(['', "Now we'll ask you for the value of all the missing command arguments.", '']);
 
         $helper = $this->getHelper('question');
 

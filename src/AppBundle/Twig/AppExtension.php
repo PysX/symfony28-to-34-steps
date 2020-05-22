@@ -17,7 +17,7 @@ use Symfony\Component\Intl\Intl;
 /**
  * This Twig extension adds a new 'md2html' filter to easily transform Markdown
  * contents into HTML contents inside Twig templates.
- * See http://symfony.com/doc/current/cookbook/templating/twig_extension.html
+ * See http://symfony.com/doc/current/cookbook/templating/twig_extension.html.
  *
  * In addition to creating the Twig extension class, before using it you must also
  * register it as a service. See app/config/services.yml file for details.
@@ -51,7 +51,7 @@ class AppExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('md2html', [$this, 'markdownToHtml'], [
-                'is_safe' => ['html']
+                'is_safe' => ['html'],
             ]),
         ];
     }
@@ -61,7 +61,7 @@ class AppExtension extends \Twig_Extension
      */
     public function getFunctions()
     {
-        return [new \Twig_SimpleFunction('locales', [$this, 'getLocales']),];
+        return [new \Twig_SimpleFunction('locales', [$this, 'getLocales'])];
     }
 
     /**
@@ -79,7 +79,7 @@ class AppExtension extends \Twig_Extension
     /**
      * Takes the list of codes of the locales (languages) enabled in the
      * application and returns an array with the name of each locale written
-     * in its own language (e.g. English, Français, Español, etc.)
+     * in its own language (e.g. English, Français, Español, etc.).
      *
      * @return array
      */
@@ -91,7 +91,7 @@ class AppExtension extends \Twig_Extension
         foreach ($localeCodes as $localeCode) {
             $locales[] = [
                 'code' => $localeCode,
-                'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode)
+                'name' => Intl::getLocaleBundle()->getLocaleName($localeCode, $localeCode),
             ];
         }
 

@@ -91,6 +91,7 @@ class Comment
     {
         return $this->content;
     }
+
     public function setContent($content)
     {
         $this->content = $content;
@@ -100,6 +101,7 @@ class Comment
     {
         return $this->authorEmail;
     }
+
     public function setAuthorEmail($authorEmail)
     {
         $this->authorEmail = $authorEmail;
@@ -109,6 +111,7 @@ class Comment
     {
         return $this->publishedAt;
     }
+
     public function setPublishedAt(DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
@@ -118,6 +121,7 @@ class Comment
     {
         return $this->post;
     }
+
     public function setPost(Post $post)
     {
         $this->post = $post;

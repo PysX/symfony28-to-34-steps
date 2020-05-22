@@ -43,7 +43,7 @@ class SourceCodeExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFunction('show_source_code', [$this, 'showSourceCode'], [
                 'is_safe' => ['html'],
-                'needs_environment' => true
+                'needs_environment' => true,
             ]),
         ];
     }
@@ -52,7 +52,7 @@ class SourceCodeExtension extends \Twig_Extension
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', [
             'controller' => $this->getController(),
-            'template'   => $this->getTemplateSource($twig->resolveTemplate($template)),
+            'template' => $this->getTemplateSource($twig->resolveTemplate($template)),
         ]);
     }
 
@@ -76,7 +76,7 @@ class SourceCodeExtension extends \Twig_Extension
         return [
             'file_path' => $method->getFileName(),
             'starting_line' => $method->getStartLine(),
-            'source_code' => $this->unindentCode($controllerCode)
+            'source_code' => $this->unindentCode($controllerCode),
         ];
     }
 
@@ -122,7 +122,7 @@ class SourceCodeExtension extends \Twig_Extension
      * Utility method that "unindents" the given $code when all its lines start
      * with a tabulation of four white spaces.
      *
-     * @param  string $code
+     * @param string $code
      *
      * @return string
      */
