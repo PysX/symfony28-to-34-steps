@@ -49,8 +49,7 @@ class Markdown
     public function toHtml($text)
     {
         $html = $this->parser->text($text);
-        $safeHtml = $this->purifier->purify($html);
 
-        return $safeHtml;
+        return $this->purifier->purify($html);
     }
 }
