@@ -11,8 +11,8 @@
 
 namespace AppBundle\EventListener;
 
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
@@ -35,7 +35,7 @@ class RedirectToPreferredLocaleListener
      *
      * @var string[]
      */
-    private $locales = array();
+    private $locales = [];
 
     /**
      * @var string
@@ -91,7 +91,7 @@ class RedirectToPreferredLocaleListener
         $preferredLanguage = $request->getPreferredLanguage($this->locales);
 
         if ($preferredLanguage !== $this->defaultLocale) {
-            $response = new RedirectResponse($this->urlGenerator->generate('homepage', array('_locale' => $preferredLanguage)));
+            $response = new RedirectResponse($this->urlGenerator->generate('homepage', ['_locale' => $preferredLanguage]));
             $event->setResponse($response);
         }
     }

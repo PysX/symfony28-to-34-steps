@@ -11,9 +11,9 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\User;
-use AppBundle\Entity\Post;
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Post;
+use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -60,7 +60,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $annaAdmin->setUsername('anna_admin');
         $annaAdmin->setEmail('anna_admin@symfony.com');
 
-        $annaAdmin->setRoles(array('ROLE_ADMIN'));
+        $annaAdmin->setRoles(['ROLE_ADMIN']);
         $encodedPassword = $passwordEncoder->encodePassword($annaAdmin, 'kitten');
         $annaAdmin->setPassword($encodedPassword);
         $manager->persist($annaAdmin);
@@ -148,7 +148,7 @@ MARKDOWN;
 
     private function getPhrases()
     {
-        return array(
+        return [
             'Lorem ipsum dolor sit amet consectetur adipiscing elit',
             'Pellentesque vitae velit ex',
             'Mauris dapibus risus quis suscipit vulputate',
@@ -164,7 +164,7 @@ MARKDOWN;
             'Sed varius a risus eget aliquam',
             'Nunc viverra elit ac laoreet suscipit',
             'Pellentesque et sapien pulvinar consectetur',
-        );
+        ];
     }
 
     private function getRandomPostTitle()

@@ -39,19 +39,19 @@ class PostType extends AbstractType
         //     $builder->add('title', null, array('required' => false, ...));
 
         $builder
-            ->add('title', null, array(
-                'attr' => array('autofocus' => true),
+            ->add('title', null, [
+                'attr' => ['autofocus' => true],
                 'label' => 'label.title',
-            ))
-            ->add('summary', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class, array('label' => 'label.summary'))
-            ->add('content', null, array(
-                'attr' => array('rows' => 20),
+            ])
+            ->add('summary', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class, ['label' => 'label.summary'])
+            ->add('content', null, [
+                'attr' => ['rows' => 20],
                 'label' => 'label.content',
-            ))
-            ->add('authorEmail', null, array('label' => 'label.author_email'))
-            ->add('publishedAt', \AppBundle\Form\Type\DateTimePickerType::class, array(
+            ])
+            ->add('authorEmail', null, ['label' => 'label.author_email'])
+            ->add('publishedAt', \AppBundle\Form\Type\DateTimePickerType::class, [
                 'label' => 'label.published_at',
-            ))
+            ])
         ;
     }
 
@@ -60,8 +60,8 @@ class PostType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => \AppBundle\Entity\Post::class,
-        ));
+        ]);
     }
 }
