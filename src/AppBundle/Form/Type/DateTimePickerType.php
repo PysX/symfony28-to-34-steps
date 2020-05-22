@@ -60,6 +60,6 @@ class DateTimePickerType extends AbstractType
      */
     public function getParent()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\DateTimeType';
+        return \Symfony\Component\Form\Extension\Core\Type\DateTimeType::class;
     }
 }

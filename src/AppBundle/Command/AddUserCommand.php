@@ -37,6 +37,9 @@ use AppBundle\Entity\User;
  */
 class AddUserCommand extends ContainerAwareCommand
 {
+    /**
+     * @var int
+     */
     const MAX_ATTEMPTS = 5;
 
     /**
@@ -109,7 +112,7 @@ class AddUserCommand extends ContainerAwareCommand
 
         $output->writeln(array(
             '',
-            'Now we\'ll ask you for the value of all the missing command arguments.',
+            "Now we'll ask you for the value of all the missing command arguments.",
             '',
         ));
 

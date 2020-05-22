@@ -35,7 +35,7 @@ class MomentFormatConverter
         // timezone
         'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
         // letter 'T'
-        '\'T\'' => 'T',
+        "'T'" => 'T',
     );
 
     /**

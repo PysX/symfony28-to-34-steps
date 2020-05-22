@@ -43,13 +43,13 @@ class PostType extends AbstractType
                 'attr' => array('autofocus' => true),
                 'label' => 'label.title',
             ))
-            ->add('summary', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array('label' => 'label.summary'))
+            ->add('summary', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class, array('label' => 'label.summary'))
             ->add('content', null, array(
                 'attr' => array('rows' => 20),
                 'label' => 'label.content',
             ))
             ->add('authorEmail', null, array('label' => 'label.author_email'))
-            ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', array(
+            ->add('publishedAt', \AppBundle\Form\Type\DateTimePickerType::class, array(
                 'label' => 'label.published_at',
             ))
         ;
@@ -61,7 +61,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Post',
+            'data_class' => \AppBundle\Entity\Post::class,
         ));
     }
 }

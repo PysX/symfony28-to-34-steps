@@ -34,6 +34,9 @@ use Doctrine\Common\Persistence\ObjectManager;
  */
 class DeleteUserCommand extends ContainerAwareCommand
 {
+    /**
+     * @var int
+     */
     const MAX_ATTEMPTS = 5;
 
     /**
@@ -89,7 +92,7 @@ HELP
 
         $output->writeln(array(
             '',
-            'Now we\'ll ask you for the value of all the missing command arguments.',
+            "Now we'll ask you for the value of all the missing command arguments.",
             '',
         ));
 
@@ -140,7 +143,7 @@ HELP
             throw new \Exception('The username can not be empty.');
         }
 
-        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
+        if (1 !== preg_match('#^[a-z_]+$#', $username)) {
             throw new \Exception('The username must contain only lowercase latin characters and underscores.');
         }
 

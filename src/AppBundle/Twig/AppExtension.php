@@ -36,7 +36,7 @@ class AppExtension extends \Twig_Extension
     /**
      * @var array
      */
-    private $locales;
+    private $locales = [];
 
     public function __construct(Markdown $parser, $locales)
     {
